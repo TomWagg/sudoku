@@ -74,10 +74,20 @@ def print_grid(grid):
     """
     for i in range(len(grid)):
         for j in range(len(grid[0])):
-            print(grid[i][j], end=" ")
+            if grid[i][j] == 0:
+                print(" ", end=" ")
+            else:
+                print(grid[i][j], end=" ")
             if (j - 2) % 3 == 0 and j < 8:
                 print("|", end=" ")
         print()
         if (i - 2) % 3 == 0 and i < 8:
             print(*["-" for _ in range(9 + 2)], end=" ")
             print()
+
+
+def empty_k_grid_spots(grid, k):
+    remove_inds = np.random.choice(81, size=k, replace=False)
+    rows, cols = ind2row_col(remove_inds)
+    grid[rows, cols] = 0
+    return grid
