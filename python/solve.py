@@ -1,9 +1,11 @@
 import numpy as np
-from utils import ind2row_col, empty_k_grid_spots
+from utils import ind2row_col, empty_k_grid_spots, print_grid
 from validate import is_valid_move
 
 
-def solve_sudoku(grid, shuffle=False):
+def solve_sudoku(grid, shuffle=False, stepbystep=False):
+    if stepbystep:
+        print_grid(grid)
     # flattened version of the 9x9 grid
     flat_grid = grid.flatten()
 
@@ -28,7 +30,7 @@ def solve_sudoku(grid, shuffle=False):
 
             # try using this value and recursively solve
             grid[row, col] = val
-            new_grid, solution = solve_sudoku(grid, shuffle=shuffle)
+            new_grid, solution = solve_sudoku(grid, shuffle=shuffle, stepbystep=stepbystep)
 
             # if this gives a solution then return
             if solution:
