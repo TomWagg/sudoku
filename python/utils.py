@@ -4,6 +4,21 @@ from validate import grid_is_valid
 
 
 def generate_valid_grid(n_filled, print_attempts=False):
+    """Generate a *valid* sudoku grid
+
+    Parameters
+    ----------
+    n_filled : `int`
+        How many entries to fill
+    print_attempts : `bool`, optional
+        Whether to print how many attempts this required, by default False
+
+    Returns
+    -------
+    valid_grid : `list` of `lists`
+        9x9 grid of sudoku entries
+    """
+    # randomly generate grids until you find one that works
     i = 1
     grid = generate_grid(n_filled=n_filled)
     while not grid_is_valid(grid):
@@ -17,6 +32,18 @@ def generate_valid_grid(n_filled, print_attempts=False):
 
 
 def generate_grid(n_filled):
+    """Generate a sudoku grid
+
+    Parameters
+    ----------
+    n_filled : `int`
+        How many entries to fill
+
+    Returns
+    -------
+    grid : `list` of `lists`
+        9x9 grid of sudoku entries
+    """
     # create a blank sudoku grid
     grid = np.zeros(shape=(9, 9)).astype(int)
 

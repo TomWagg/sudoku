@@ -10,7 +10,7 @@ def grid_is_valid(grid, verbose=False):
     Parameters
     ----------
     grid : `list` of `lists`
-        _description_
+        9x9 grid of sudoku entries
     verbose : `bool`, optional
         Whether to print out why a grid is invalid, by default False
 
@@ -39,8 +39,8 @@ def has_valid_boxes(grid):
 
     Parameters
     ----------
-    grid : _type_
-        _description_
+    grid : `list` of `lists`
+        9x9 grid of sudoku entries
 
     Returns
     -------
@@ -64,8 +64,8 @@ def has_valid_rows(grid):
 
     Parameters
     ----------
-    grid : _type_
-        _description_
+    grid : `list` of `lists`
+        9x9 grid of sudoku entries
 
     Returns
     -------
