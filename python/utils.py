@@ -91,3 +91,21 @@ def empty_k_grid_spots(grid, k):
     rows, cols = ind2row_col(remove_inds)
     grid[rows, cols] = 0
     return grid
+
+
+def parse_grid(grid_str):
+    """Parse a grid from a string input.
+
+    Use . to represent a blank square and | can optionally be used to note the end of rows.
+
+    Parameters
+    ----------
+    grid_str : `str`
+        A string representation of a sudoku grid
+
+    Returns
+    -------
+    grid : `np.ndarray`
+        The sudoku grid
+    """
+    return np.asarray([num for num in grid_str.replace(".", "0").replace("|", "")]).astype(int).reshape(9, 9)

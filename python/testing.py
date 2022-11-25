@@ -1,5 +1,5 @@
 from validate import grid_is_valid
-from utils import print_grid, empty_k_grid_spots
+from utils import print_grid, empty_k_grid_spots, parse_grid
 from solve import solve_sudoku, generate_solvable_grid
 import numpy as np
 import time
@@ -18,6 +18,8 @@ def basic_g4g_test():
             [0, 0, 0, 0, 0, 0, 0, 7, 4],
             [0, 0, 5, 2, 0, 6, 3, 0, 0]]
     grid = np.array(grid)
+
+    # grid = parse_grid("3.65.84..|52.......|.87....31|..3.1..8.|9..863..5|.5..9.6..|13....25.|.......74|..52.63..")
 
     start = time.time()
     print_grid(grid)
