@@ -1,6 +1,18 @@
 import numpy as np
 
 
+def is_valid_move(grid, row, col, val):
+    if val in grid[row]:
+        return False
+    if val in grid.T[col]:
+        return False
+    box_rs = row - row % 3
+    box_cs = col - col % 3
+    if val in grid[box_rs:box_rs + 3, box_cs:box_cs + 3]:
+        return False
+    return True
+
+
 def grid_is_valid(grid, verbose=False):
     """Check whether a sudoku grid is valid
 

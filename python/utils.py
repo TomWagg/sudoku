@@ -3,6 +3,10 @@ import numpy as np
 from validate import grid_is_valid
 
 
+def ind2row_col(ind):
+    return ind // 9, ind % 9
+
+
 def generate_valid_grid(n_filled, print_attempts=False):
     """Generate a *valid* sudoku grid
 
