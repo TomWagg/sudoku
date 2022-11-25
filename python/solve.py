@@ -1,9 +1,9 @@
 import numpy as np
-from utils import ind2row_col, print_grid
-from validate import grid_is_valid, is_valid_move
+from utils import ind2row_col, empty_k_grid_spots
+from validate import is_valid_move
 
 
-def solve_sudoku(grid):
+def solve_sudoku(grid, shuffle=False):
     # flattened version of the 9x9 grid
     flat_grid = grid.flatten()
 
@@ -19,13 +19,16 @@ def solve_sudoku(grid):
     row, col = ind2row_col(ind)
 
     # try every possible value
-    for val in range(1, 10):
+    val_range = list(range(1, 10))
+    if shuffle:
+        np.random.shuffle(val_range)
+    for val in val_range:
         # if adding that value is a valid move
         if is_valid_move(grid, row, col, val):
 
             # try using this value and recursively solve
             grid[row, col] = val
-            new_grid, solution = solve_sudoku(grid)
+            new_grid, solution = solve_sudoku(grid, shuffle=shuffle)
 
             # if this gives a solution then return
             if solution:
@@ -35,3 +38,21 @@ def solve_sudoku(grid):
                 grid[row, col] = 0
     # if no number fit then it's time to give up
     return grid, False
+
+
+def generate_solvable_grid(n_filled):
+    # generate a fully solved grid, then erase some values!
+    grid = np.zeros((9, 9)).astype(int)
+    grid = _fill_diagonals(grid)
+    grid, _ = solve_sudoku(grid, shuffle=True)
+
+    n_remove = max(81 - n_filled, 0)
+    if n_remove > 0:
+        grid = empty_k_grid_spots(grid, n_remove)
+    return grid
+
+
+def _fill_diagonals(grid):
+    for i in range(3):
+        grid[i * 3:(i + 1) * 3, i * 3:(i + 1) * 3] = np.random.choice(9, size=9, replace=False).reshape(3, 3) + 1
+    return grid
