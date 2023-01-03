@@ -116,6 +116,7 @@ def plot_solver_times():
     plt.ylabel("Runtime [seconds]")
     plt.legend(loc="lower left")
     plt.title("Sudoku Solver Runtime")
+    plt.savefig("time_to_solve.pdf", format="pdf", bbox_inches="tight")
     plt.show()
 
 
